@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "./Banner";
 import { CircleUserRound, Menu, Search, ShoppingCart, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import type { Route } from "../types/types";
+
+const routes: Route[] = [
+  { name: "Shop", path: "/" },
+  { name: "On Sale", path: "/" },
+  { name: "New Arrivals", path: "/" },
+  { name: "Brands", path: "/" },
+];
 
 export default function Navbar() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <header>
       <Banner />
@@ -14,10 +23,11 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center gap-8">
-          <a href="#">Shop</a>
-          <a href="#">On Sale</a>
-          <a href="#">New Arrivals</a>
-          <a href="#">Brands</a>
+          {routes.map((route, index) => (
+            <div key={index}>
+              <Link to={route.path}>{route.name}</Link>
+            </div>
+          ))}
 
           <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
             <input
@@ -36,7 +46,7 @@ export default function Navbar() {
           </div>
 
           <div>
-            <CircleUserRound />
+            <CircleUserRound className="w-7 h-7 text-gray-700 cursor-pointer" />
           </div>
         </div>
 
@@ -68,18 +78,13 @@ export default function Navbar() {
             open ? "flex" : "hidden"
           } absolute top-[60px] left-0 w-full h-screen bg-white shadow-md pt-16 flex-col items-center gap-6 px-5 text-sm md:hidden `}
         >
-          <a href="#" className="block text-lg font-medium">
-            Shop
-          </a>
-          <a href="#" className="block text-lg font-medium">
-            On Sale
-          </a>
-          <a href="#" className="block text-lg font-medium">
-            New Arrivals
-          </a>
-          <a href="#" className="block text-lg font-medium">
-            Brands
-          </a>
+          {routes.map((route, index) => (
+            <div key={index}>
+              <Link to={route.path} className="text-lg font-medium">
+                {route.name}
+              </Link>
+            </div>
+          ))}
         </div>
       </nav>
     </header>

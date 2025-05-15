@@ -1,4 +1,5 @@
 import React from "react";
+import versaceImg from "../assets/logo-versace-bg.png";
 
 export default function Hero() {
   return (
