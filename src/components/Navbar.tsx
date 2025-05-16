@@ -50,11 +50,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <button
-          onClick={() => (open ? setOpen(false) : setOpen(true))}
-          aria-label="Menu"
-          className="md:hidden flex items-center gap-4"
-        >
+        <div className="md:hidden flex items-center gap-4">
           <div className="relative cursor-pointer mr-2">
             <ShoppingCart />
             <button className="absolute -top-2 -right-3 text-xs text-white bg-gray-800 w-[18px] h-[18px] rounded-full">
@@ -62,15 +58,23 @@ export default function Navbar() {
             </button>
           </div>
 
-          <CircleUserRound className="w-7 h-7 text-gray-700 cursor-pointer" />
+          <div>
+            <CircleUserRound className="w-7 h-7 text-gray-700 cursor-pointer" />
+          </div>
 
-          {/* Menu Icon */}
-          {open ? (
-            <X className="w-8 h-8 text-gray-700 cursor-pointer" />
-          ) : (
-            <Menu className="w-8 h-8 text-gray-700 cursor-pointer" />
-          )}
-        </button>
+          <div
+            onClick={() => (open ? setOpen(false) : setOpen(true))}
+            aria-label="Menu"
+            className="md:hidden flex items-center gap-4"
+          >
+            {/* Menu Icon */}
+            {open ? (
+              <X className="w-8 h-8 text-gray-700 cursor-pointer" />
+            ) : (
+              <Menu className="w-8 h-8 text-gray-700 cursor-pointer" />
+            )}
+          </div>
+        </div>
 
         {/* Mobile Menu */}
         <div
